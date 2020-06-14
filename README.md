@@ -20,3 +20,8 @@ https://developer.snapappointments.com/bootstrap-select/
 # angular.json
 
     "outputPath": "docs",
+
+# index
+
+     <!-- para mandar a githuibPages, desabilitar esto -->
+    <!-- <base href="/" /> -->
