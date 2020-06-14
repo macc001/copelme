@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CopModels } from './cop.models';
+import * as Model from '../models/cop.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CopeService {
-  listasExel: CtrlDiaTModels[] = [
+  listasExel: Model.CtrlDiaTModels[] = [
     {
       codigo: '71110',
       insumo: 'MATERIALES DIRECTO DE PREPARACION',
@@ -296,7 +296,7 @@ export class CopeService {
     },
   ];
 
-  prodExel: ProdTModels[] = [
+  prodExel: Model.ProdTModels[] = [
     {
       codigo: '00000',
       nombre: 'B3001',
@@ -317,30 +317,65 @@ export class CopeService {
       codigo: '00000',
       nombre: 'B3005',
     },
+    {
+      codigo: '00000',
+      nombre: 'B3006',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3007',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3008',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3009',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3010',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3011',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3012',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3013',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3014',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3015',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3016',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3017',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3018',
+    },
+    {
+      codigo: '00000',
+      nombre: 'B3019',
+    },
   ];
   constructor() {
     localStorage.setItem('ctrlDiario', JSON.stringify(this.listasExel));
     localStorage.setItem('prodCtrol', JSON.stringify(this.prodExel));
   }
-}
-export interface CtrlDiaTModels {
-  codigo: string;
-  insumo: string;
-  data: InsumoModels[];
-}
-
-export class InsumoModels {
-  codigo: string;
-  insumo: string;
-  unidad: string;
-  saldoAnt: number;
-  traspaso: number;
-  totalIns: number;
-  consumo: number;
-  saldoFin: number;
-}
-
-export interface ProdTModels {
-  codigo: string;
-  nombre: string;
 }

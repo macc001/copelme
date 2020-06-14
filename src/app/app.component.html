@@ -25,7 +25,13 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Producto</label>
-            <select class="selectpicker form-control" multiple #selectId>
+            <select
+              class="selectpicker form-control"
+              multiple
+              #selectId
+              disabled
+              data-live-search="true"
+            >
               <ng-container *ngFor="let prod of prodCtrl; let i = index">
                 <option>{{ prod.nombre }}</option>
               </ng-container>
@@ -103,9 +109,17 @@
               class="btn btn-light margin-le"
               data-toggle="modal"
               title="Agregar Traspaso"
-              data-target="#agregarModal"
+              data-target="#traspasoModal"
             >
-              <i class="fa fa-plus"></i>
+              <i class="fa fa-exchange"></i>
+            </button>
+            <button
+              class="btn btn-light margin-le"
+              data-toggle="modal"
+              title="Agregar Traspaso"
+              data-target="#saldoFinalModal"
+            >
+              <i class="fa fa-balance-scale"></i>
             </button>
           </div>
         </div>
@@ -138,10 +152,7 @@
                 <tr class="color-table-title">
                   <th scope="row"></th>
                   <td>{{ ctrldiario.codigo }}</td>
-                  <td>{{ ctrldiario.insumo }}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td colspan="4">{{ ctrldiario.insumo }}</td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -227,7 +238,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content animate__animated animate__bounceInDown">
       <div class="modal-header">
-        <h5 class="modal-title">Editar</h5>
+        <h5 class="modal-title">
+          Editar <strong>Traspaso-Saldo final</strong>
+        </h5>
         <button
           type="button"
           class="close"
@@ -246,13 +259,25 @@
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">
-                        {{ "editarModalTem" | lowercase }}
+                        {{ EditTraspSald | lowercase }}
                       </div>
                     </div>
                     <input
                       type="number"
                       class="form-control"
                       placeholder="Traspaso"
+                    />
+                  </div>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        {{ EditTraspSald | lowercase }}
+                      </div>
+                    </div>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Saldo Final"
                     />
                   </div>
                 </div>
@@ -277,10 +302,10 @@
   </div>
 </div>
 
-<!-- ------------------ AGREGAR --------------->
+<!-- ------------------ AGREGAR TRASPASO--------------->
 <div
   class="modal fade"
-  id="agregarModal"
+  id="traspasoModal"
   tabindex="-1"
   role="dialog"
   aria-hidden="true"
@@ -321,6 +346,77 @@
                             type="number"
                             class="form-control"
                             placeholder="Traspaso"
+                          />
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          (click)="guardar('agregarJugador')"
+          class="btn btn-primary"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------ AGREGAR SALDO FINAL--------------->
+<div
+  class="modal fade"
+  id="saldoFinalModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content animate__animated animate__bounceInDown">
+      <div class="modal-header">
+        <h5 class="modal-title">Insertar Saldo Final</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12">
+              <form>
+                <div class="form-row align-items-center">
+                  <ng-container
+                    *ngFor="let ctrldiario of ctrlDiar; let i = index"
+                  >
+                    <ng-container
+                      *ngFor="let dato of ctrldiario.data; let j = index"
+                    >
+                      <div class="col-12">
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              {{ dato.insumo | lowercase }}
+                            </div>
+                          </div>
+                          <input
+                            type="number"
+                            class="form-control"
+                            placeholder="Saldo Final"
                           />
                         </div>
                       </div>

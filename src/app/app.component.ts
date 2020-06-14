@@ -1,7 +1,10 @@
 import { Component, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CopModels } from './cop.models';
-import { CopeService } from './cop.service';
+import * as Model from './master/utils/models/cop.models';
+import { CopeService } from './master/utils/service/cop.service';
+import { NotyGlobal } from 'src/app/master/utils/global/index.global';
+import { InitGlobal } from 'src/app/master/utils/global/index.global';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,19 +14,26 @@ export class AppComponent {
   title = 'Copelme';
   forma: FormGroup;
   habilitar: boolean = true;
-  ctrlDiar: CtrlDiaTModels[];
-  prodCtrl: ProdTModels[];
+  ctrlDiar: Model.CtrlDiaTModels[];
+  prodCtrl: Model.ProdTModels[];
+  EditTraspSald: any;
   @ViewChild('selectId') myButton: ElementRef;
 
   constructor(
     private anoteS: CopeService,
     private fb: FormBuilder,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private notyG: NotyGlobal,
+    private initG: InitGlobal
   ) {
     this.ctrlDiar = JSON.parse(localStorage.getItem('ctrlDiario')) || [];
     this.prodCtrl = JSON.parse(localStorage.getItem('prodCtrol')) || [];
     this.crearFormulario();
+    setTimeout(() => {
+      this.notyG.noty('success', 'Bienvenido ', 3000);
+    }, 1000);
   }
+
   crearFormulario() {
     this.forma = this.fb.group({
       descripcion: ['', [Validators.required]],
@@ -31,36 +41,29 @@ export class AppComponent {
   }
 
   habiDatos(): boolean {
-    // console.log(this.myButton.nativeElement);
-    this.renderer.removeAttribute(this.myButton.nativeElement, 'disabled');
-    return this.habilitar ? (this.habilitar = false) : (this.habilitar = true);
+    if (this.habilitar) {
+      this.renderer.removeAttribute(this.myButton.nativeElement, 'disabled');
+      this.initG.select();
+      this.habilitar = false;
+    } else {
+      this.renderer.setAttribute(
+        this.myButton.nativeElement,
+        'disabled',
+        'true'
+      );
+      this.initG.select();
+      this.habilitar = true;
+    }
+    return this.habilitar;
   }
 
-  editar(dato: InsumoModels) {
-    console.log('editar', dato);
+  editar(dato: Model.InsumoModels) {
+    this.EditTraspSald = dato.insumo;
+    console.log('dato', dato);
+    console.log('editar', this.EditTraspSald);
   }
 
   guardar(tipo: string) {
     console.log('guardar', tipo);
   }
-}
-export interface CtrlDiaTModels {
-  codigo: string;
-  insumo: string;
-  data: InsumoModels[];
-}
-
-export class InsumoModels {
-  codigo: string;
-  insumo: string;
-  unidad: string;
-  saldoAnt: number;
-  traspaso: number;
-  totalIns: number;
-  consumo: number;
-  saldoFin: number;
-}
-export interface ProdTModels {
-  codigo: string;
-  nombre: string;
 }
