@@ -250,38 +250,36 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-12">
-              <form class="form-inline">
-                <div class="col-12">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        {{ EditTraspSald | lowercase }}
-                      </div>
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <form class="form-inline">
+              <div class="col-12">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ EditTraspSald | lowercase }}
                     </div>
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Traspaso"
-                    />
                   </div>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        {{ EditTraspSald | lowercase }}
-                      </div>
-                    </div>
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Saldo Final"
-                    />
-                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Traspaso"
+                  />
                 </div>
-              </form>
-            </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ EditTraspSald | lowercase }}
+                    </div>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Saldo Final"
+                  />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -323,36 +321,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-12">
-              <form>
-                <div class="form-row align-items-center">
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <form>
+              <div class="form-row align-items-center">
+                <ng-container
+                  *ngFor="let ctrldiario of ctrlDiar; let i = index"
+                >
                   <ng-container
-                    *ngFor="let ctrldiario of ctrlDiar; let i = index"
+                    *ngFor="let dato of ctrldiario.data; let j = index"
                   >
-                    <ng-container
-                      *ngFor="let dato of ctrldiario.data; let j = index"
-                    >
-                      <div class="col-12">
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              {{ dato.insumo | lowercase }}
-                            </div>
+                    <div class="col-12">
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            {{ dato.insumo | lowercase }}
                           </div>
-                          <input
-                            type="number"
-                            class="form-control"
-                            placeholder="Traspaso"
-                          />
                         </div>
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Traspaso"
+                        />
                       </div>
-                    </ng-container>
+                    </div>
                   </ng-container>
-                </div>
-              </form>
-            </div>
+                </ng-container>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -394,36 +390,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-12">
-              <form>
-                <div class="form-row align-items-center">
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <form>
+              <div class="form-row align-items-center">
+                <ng-container
+                  *ngFor="let ctrldiario of ctrlDiar; let i = index"
+                >
                   <ng-container
-                    *ngFor="let ctrldiario of ctrlDiar; let i = index"
+                    *ngFor="let dato of ctrldiario.data; let j = index"
                   >
-                    <ng-container
-                      *ngFor="let dato of ctrldiario.data; let j = index"
-                    >
-                      <div class="col-12">
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              {{ dato.insumo | lowercase }}
-                            </div>
+                    <div class="col-12">
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            {{ dato.insumo | lowercase }}
                           </div>
-                          <input
-                            type="number"
-                            class="form-control"
-                            placeholder="Saldo Final"
-                          />
                         </div>
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Saldo Final"
+                        />
                       </div>
-                    </ng-container>
+                    </div>
                   </ng-container>
-                </div>
-              </form>
-            </div>
+                </ng-container>
+              </div>
+            </form>
           </div>
         </div>
       </div>
